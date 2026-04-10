@@ -12,7 +12,17 @@ const State = {
         { id: 2, name: 'Barba Completa', price: 25, duration: 20 },
         { id: 3, name: 'Corte + Barba', price: 50, duration: 50 }
     ],
-    appointments: JSON.parse(localStorage.getItem('barber_appointments')) || []
+    barbers: JSON.parse(localStorage.getItem('barber_barbers')) || [
+        { id: 1, name: 'Ricardo Navalha', specialty: 'Barba & Corte' },
+        { id: 2, name: 'Júnior Style', specialty: 'Degradê & Pigmentação' }
+    ],
+    appointments: JSON.parse(localStorage.getItem('barber_appointments')) || [],
+    bookingData: {
+        service: null,
+        barber: null,
+        date: null,
+        time: null
+    }
 };
 
 // Initialize App
@@ -20,8 +30,9 @@ document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
     initShopProfile();
     initServices();
+    initBarbers();
+    initBookingWizard();
     renderDashboard();
-    renderBooking();
 });
 
 // --- Navigation Logic ---
